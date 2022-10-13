@@ -1,7 +1,8 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { AlbumProps } from '../../Types/AlbumTypes';
 import { PhotoProps } from '../../Types/PhotosTypes';
+import * as S from './style';
 
 import { Api } from '../../../Api/AlbumApi';
 
@@ -11,12 +12,12 @@ export const Album = () => {
   const Params = useParams();
 
   const [album, setAlbum] = useState<AlbumProps>({ id: 0, title: '', userId: 0 })
-  const [photos, setPhotos] = useState<PhotoProps>()
+  const [photos, setPhotos] = useState<PhotoProps[]>([])
 
   useEffect(() => {
     if (Params.id) {
       LoadSpecificAlbum(Params.id);
-      LoadPhotos(Params.id)
+      LoadAllPhotos()
     }
   }, [])
 
@@ -26,8 +27,8 @@ export const Album = () => {
     setAlbum(res);
   }
 
-  const LoadPhotos = async (id: string) => {
-    let res = await Api.getAllPhotos(id);
+  const LoadAllPhotos = async () => {
+    let res = await Api.getAllPhotos();
     setPhotos(res)
     console.log(res)
 
@@ -35,22 +36,21 @@ export const Album = () => {
 
 
   return (
-    <div>
+    <S.Container>
       <button onClick={e => Navigate(-1)}>Voltar</button>
-      <br />
-      Album: <p>{album.title}</p>
+      <S.TitleArea>Album: {album.title}</S.TitleArea>
 
-      <div>
+      <S.PhotosArea>
         {photos.map((item) => (
           <div key={item.id}>
-            <p>{item.albumId}</p>
-            <p>{item.thumbnailUrl}</p>
-            <p>{item.title}</p>
-            <p>{item.url}</p>
+            <Link to={`/foto/${item.id}`}>
+              <S.ImgArea src={item.thumbnailUrl}></S.ImgArea>
+            </Link>
           </div>
         ))}
-      </div>
+      </S.PhotosArea>
 
-    </div>
+    </S.Container>
   )
 }
+

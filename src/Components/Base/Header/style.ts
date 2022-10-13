@@ -11,7 +11,7 @@ border-radius: 2px;
 
 export const NavBar = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   height: 5vh;
 
   p {

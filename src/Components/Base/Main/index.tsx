@@ -1,5 +1,4 @@
 import * as S from './style';
-import { About } from '../../Pages/About/About';
 
 type Props = {
   children: React.ReactNode

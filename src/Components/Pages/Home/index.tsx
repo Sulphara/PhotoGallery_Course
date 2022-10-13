@@ -1,5 +1,5 @@
 import * as S from './style';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { AlbumProps } from '../../Types/AlbumTypes';
@@ -24,7 +24,7 @@ export const Home = () => {
     <S.Container>
       {albums.map((item) => (
         <div key={item.id}>
-          <Link to={`Album/${item.id}`} style={{ textDecoration: 'none' }}>
+          <Link to={`album/${item.id}`} style={{ textDecoration: 'none' }}>
             <S.AlbumTitle>
               <p >
                 {item.title}

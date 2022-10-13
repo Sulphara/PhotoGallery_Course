@@ -2,19 +2,19 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 display: grid;
-gap: 0.5rem;
-grid-template-columns: repeat(3, 1fr);
+grid-template-columns: repeat(1, 1fr);
     
 `;
 
 export const AlbumTitle = styled.div`
+display: flex;
+justify-content: center;
   border: solid 1px;
-  margin: 3px 5px;
-  width: 85%;
+  margin: 10px 0;
   height: 2rem;
 
   p {
     color: white;
-    font-size: 15px;
+    font-size: 25px;
   }
   `;
